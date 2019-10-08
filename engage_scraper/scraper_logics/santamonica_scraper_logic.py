@@ -29,11 +29,11 @@ class SantaMonicaScraper(EngageScraper):
         super().__init__(tz_string)
 
         # Requests/HTML session
-        self._session = requests.Session()
+        #self._session = requests.Session()
 
         # For DB connection, make sure necessary environment variables are set
-        self._engine = create_postgres_connection()
-        self._DBsession = create_postgres_session(self._engine)
+        #self._engine = create_postgres_connection()
+        #self._DBsession = create_postgres_session(self._engine)
 
         # For tweeting
         self._twitter_util = TwitterUtil(CONSUMER_KEY,
@@ -42,17 +42,17 @@ class SantaMonicaScraper(EngageScraper):
                                          ACCESS_TOKEN_SECRET)
 
         # Create tables
-        create_postgres_tables(Base, self._engine)
-        seed_tables(self._DBsession)
+        #create_postgres_tables(Base, self._engine)
+        #seed_tables(self._DBsession)
 
         # Retrieve committee
-        self._Committee = self._DBsession().query(Committee).filter(
-            Committee.name == committee).first()
+        #self._Committee = self._DBsession().query(Committee).filter(
+        #    Committee.name == committee).first()
 
         # Extra SM specific parameters
         self._years = years
-        self._agendas_table_location = self._Committee.agendas_table_location
-        self.base_agenda_location = self._Committee.base_agenda_location
+        #self._agendas_table_location = self._Committee.agendas_table_location
+        #self.base_agenda_location = self._Committee.base_agenda_location
 
     @property
     def agendas_table_location(self):
